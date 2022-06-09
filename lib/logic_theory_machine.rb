@@ -9,25 +9,29 @@ class LinkedList
   end
 
   def append(value)
-    if empty?
-      @head = Node.new(value)
-    else
-      current_node = @head
-      new_node = Node.new(value)
-      current_node = current_node.next_node until current_node.next_node.nil?
-      current_node.next_node = new_node
-    end
+    return @head = Node.new(value) if empty?
+
+    current_node = @head
+    new_node = Node.new(value)
+    current_node = current_node.next_node until current_node.next_node.nil?
+    current_node.next_node = new_node
   end
 
   def prepend(value)
-    if empty?
-      @head = Node.new(value)
-    else
-      current_node = @head
-      @head = Node.new(value)
-      @head.next_node = current_node
-    end
+    return @head = Node.new(value) if empty?
+
+    current_node = @head
+    @head = Node.new(value)
+    @head.next_node = current_node
   end
+
+  # # Alternative way for showing head
+  # def head
+  #   return nil if empty?
+
+  #   puts "Value: #{@head.value}"
+  #   puts "Next node: #{@head.next_node}"
+  # end
 
   def size(size = 0)
     return size if empty?
