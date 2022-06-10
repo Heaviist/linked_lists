@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 # Class used to create a linked list
+## Consider adding an @tail instance variable
 class LinkedList
   attr_accessor :head
 
@@ -12,9 +13,8 @@ class LinkedList
     return @head = Node.new(value) if empty?
 
     current_node = @head
-    new_node = Node.new(value)
-    current_node = current_node.next_node until current_node.next_node.nil?
-    current_node.next_node = new_node
+    current_node = current_node.next until current_node.next.nil?
+    current_node.next = Node.new(value)
   end
 
   def prepend(value)
@@ -22,23 +22,15 @@ class LinkedList
 
     current_node = @head
     @head = Node.new(value)
-    @head.next_node = current_node
+    @head.next = current_node
   end
 
-  # # Alternative way for showing head
-  # def head
-  #   return nil if empty?
-
-  #   puts "Value: #{@head.value}"
-  #   puts "Next node: #{@head.next_node}"
-  # end
-
   def size(size = 0)
-    return size if empty?
+    return 0 if empty?
 
     current_node = @head
-    until current_node.next_node.nil?
-      current_node = current_node.next_node
+    until current_node.next.nil?
+      current_node = current_node.next
       size += 1
     end
     size + 1
@@ -51,10 +43,10 @@ end
 
 # Class used for every node in the linked list
 class Node
-  def initialize(value = nil, next_node = nil)
+  def initialize(value)
     @value = value
-    @next_node = next_node
+    @next = nil
   end
 
-  attr_accessor :value, :next_node
+  attr_accessor :value, :next
 end
