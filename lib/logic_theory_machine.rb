@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class used to create a linked list
-## Consider adding an @tail instance variable
+## Consider adding an @tail instance variable. Downside is keeping @tail in memory, without pointers from back to front, I don't see it having much value, since you would have to iterate to that point every time anyway
 class LinkedList
   attr_accessor :head
 
@@ -34,6 +34,17 @@ class LinkedList
       size += 1
     end
     size + 1
+  end
+
+  # Returns the node at the given index. Index numbers start at 0.
+  def at(index)
+    return nil unless index.between?(0, size - 1)
+
+    current_node = @head
+    (0...index).each do
+      current_node = current_node.next
+    end
+    current_node
   end
 
   def clear
