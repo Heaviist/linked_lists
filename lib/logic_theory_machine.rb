@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # Class used to create a linked list
-## Consider adding an @tail instance variable. Downside is keeping @tail in memory, without pointers from back to front, I don't see it having much value, since you would have to iterate to that point every time anyway
+## Consider adding an @tail instance variable. Downside is keeping @tail in memory, without pointers from back to front, I don't see it having much value, since you would have to iterate to that point every time anyway. #pop for example would still have to change the previous node's next variable to nil.
+## Consider letting pop return the deleted value.
 class LinkedList
   attr_accessor :head
 
@@ -45,6 +46,22 @@ class LinkedList
       current_node = current_node.next
     end
     current_node
+  end
+
+  # Removes and returns the last element from the list
+  def pop
+    return nil if empty?
+
+    current_node = @head
+    if current_node.next.nil?
+      last_node = current_node
+      clear
+    else
+      current_node = current_node.next until current_node.next.next.nil?
+      last_node = current_node.next
+      current_node.next = nil
+    end
+    last_node
   end
 
   def clear
