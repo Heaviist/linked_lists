@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 # Class used to create a linked list
-## Consider adding an @tail instance variable. Downside is keeping @tail in memory, without pointers from back to front, I don't see it having much value, since you would have to iterate to that point every time anyway. #pop for example would still have to change the previous node's next variable to nil.
-## Consider letting pop return the deleted value.
-### Consider adding an instance variable @size that keeps track of the number of entries in the list. There are obvious downsides to this though.
 class LinkedList
   attr_reader :head
 

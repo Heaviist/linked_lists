@@ -26,7 +26,12 @@ Create the following methods:
 4. Somehow I feel like proper linking from one node to the next will take some getting used to.
 
 # Results and Evaluation
-To be added later
+The code achieves all results set in the goals
+1. Once the concept is clear, it becomes relatively straightforward as long as you keep in mind at which node you're working. It was really helpful to use clear variable names that made sense for this assigment.
+2. Once the first method was written, everything kind of followed naturally
 
 # Notes for future revisiting
-To be added later
+1. I have considered using an @tail instance variable. Downside is keeping @tail in memory, without pointers from back to front, I don't see it having much value, since you would have to iterate to that point every time anyway. #pop for example would still have to change the previous node's next variable to nil. With new insights this might be useful to investigate further.
+2. #pop now returns the removed node. It's not strictly necessary but felt elegant. It does make the method longer than the recommended 10 lines.
+3. It might be interesting to consider adding an instance variable @size that keeps track of the number of entries in the list. There are obvious downsides to this though, as bookkeeping would have to be done in almost all methods and you have to keep it in memory, but maybe there are situations where this makes way more sense...
+4. Obviously, better would be to split the files into a main.rb in the /root folder and a /lib folder containing node.rb and linked_list.rb, but for now I do like my file names related to some history of the topic.
