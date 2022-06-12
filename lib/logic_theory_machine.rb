@@ -69,12 +69,25 @@ class LinkedList
     return false if empty?
 
     current_node = @head
-    until current_node.next.nil?
+    until current_node.nil?
       return true if current_node.value == value
 
       current_node = current_node.next
     end
     false
+  end
+
+  def find(value)
+    return nil if empty?
+
+    current_node = @head
+    index = 0
+    until current_node.nil?
+      return index if current_node.value == value
+
+      current_node = current_node.next
+      index += 1
+    end
   end
 
   def clear
