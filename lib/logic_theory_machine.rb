@@ -5,11 +5,7 @@
 ## Consider letting pop return the deleted value.
 ### Consider adding an instance variable @size that keeps track of the number of entries in the list. There are obvious downsides to this though.
 class LinkedList
-  attr_accessor :head
-
-  def empty?
-    @head.nil?
-  end
+  attr_reader :head
 
   def append(value)
     return @head = Node.new(value) if empty?
@@ -98,8 +94,34 @@ class LinkedList
     end
   end
 
+  # Inserts value at the given index (starting at 0).
+  def insert_at(value, index)
+    return append(value) if index >= size
+
+    current_node = at(index - 1)
+    inserted_node = Node.new(value)
+    inserted_node.next = current_node.next
+    current_node.next = inserted_node
+  end
+
+  def remove_at(index)
+    list_size = size
+    return nil if index >= list_size
+    return pop if list_size == 1
+
+    previous_node = at(index - 1)
+    remove_node = at(index)
+    previous_node.next = remove_node.next
+  end
+
   def clear
     @head = nil
+  end
+
+  private
+
+  def empty?
+    @head.nil?
   end
 end
 
