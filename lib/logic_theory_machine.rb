@@ -90,6 +90,14 @@ class LinkedList
     end
   end
 
+  def to_s
+    current_node = @head
+    until current_node.nil?
+      print "-> ( #{current_node.value} ) "
+      current_node = current_node.next
+    end
+  end
+
   def clear
     @head = nil
   end
